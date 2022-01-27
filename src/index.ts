@@ -124,4 +124,46 @@ const vadim = new Person(1, 'Vadim');
 // console.log(vadim);
 // vadim.id = 7;
 // console.log(vadim.id);
-console.log(vadim.register());
+// console.log(vadim.register());
+
+interface PersonInterface {
+  id: number;
+  name: string;
+  register(): string;
+}
+
+class Person1 implements PersonInterface {
+  id: number;
+  name: string;
+  constructor(id: number, name: string) {
+    this.id = id;
+    this.name = name;
+  }
+  register() {
+    return `${this.name} is now registered`;
+  }
+}
+const vadim1 = new Person1(1, 'Vadim');
+
+//^ Subclasses
+class Employee extends Person1 {
+  position: string;
+
+  constructor(id: number, name: string, position: string) {
+    super(id, name);
+    this.position = position;
+  }
+}
+
+const emp = new Employee(3, 'Shawn', 'Developer');
+// console.log(emp.register());
+
+//& Generics
+function getArray<T>(items: T[]): T[] {
+  return new Array().concat(items);
+}
+
+let numArray = getArray<number>([1, 2, 3, 4]);
+let strArray = getArray<string>(['Brad', 'John', 'Jill']);
+
+// strArray.push(1);

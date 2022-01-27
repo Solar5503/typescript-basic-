@@ -72,7 +72,29 @@ class Person {
     }
 }
 const vadim = new Person(1, 'Vadim');
-// console.log(vadim);
-// vadim.id = 7;
-// console.log(vadim.id);
-console.log(vadim.register());
+class Person1 {
+    constructor(id, name) {
+        this.id = id;
+        this.name = name;
+    }
+    register() {
+        return `${this.name} is now registered`;
+    }
+}
+const vadim1 = new Person1(1, 'Vadim');
+//^ Subclasses
+class Employee extends Person1 {
+    constructor(id, name, position) {
+        super(id, name);
+        this.position = position;
+    }
+}
+const emp = new Employee(3, 'Shawn', 'Developer');
+// console.log(emp.register());
+//& Generics
+function getArray(items) {
+    return new Array().concat(items);
+}
+let numArray = getArray([1, 2, 3, 4]);
+let strArray = getArray(['Brad', 'John', 'Jill']);
+// strArray.push(1);
